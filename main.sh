@@ -28,12 +28,25 @@ do
 
             echo "パスワードの追加は成功しました。"
             echo "次の選択肢から入力してください(Add Password/Get Password/Exit)：";;
+
         "Get Password" )
+            serviceName=
+
             echo "サービス名を入力してください："
-            ;;
+            read serviceName
+
+            grep -A 2 "サービス名：$serviceName" contents.txt
+
+            if [ $? -ne 0 ] ; then
+            echo "そのサービスは登録されていません。"
+            fi
+
+            echo "次の選択肢から入力してください(Add Password/Get Password/Exit)：";;
+
         "Exit" )
             echo "Thank you!"
             break;;
+
         * )
             echo "入力が間違えています。Add Password/Get Password/Exit から入力してください。";
     esac
